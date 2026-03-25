@@ -27,7 +27,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{code}")
-    public ResponseEntity<Usuario> buscarPorcode(@PathVariable int code){
+    public ResponseEntity<Usuario> buscarPorcode(@PathVariable Long code){
         return usuarioService.buscarPorcode(code)
          .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -45,7 +45,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("/{code}")
-    public ResponseEntity<Void> eliminar(@PathVariable int code){
+    public ResponseEntity<Void> eliminar(@PathVariable Long code){
         try{
             if(!usuarioService.existcode(code)){
                 return ResponseEntity.notFound().build();
@@ -64,7 +64,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/{code}")
-    public ResponseEntity<?> Actualizar(@PathVariable int code, @RequestBody Usuario usuario){
+    public ResponseEntity<?> Actualizar(@PathVariable Long code, @RequestBody Usuario usuario){
         try{
             if(!usuarioService.existcode(code)){
                 return ResponseEntity.notFound().build();
